@@ -1,0 +1,541 @@
+{
+	"info": {
+		"_postman_id": "f0e56e21-327d-4dc8-87c6-4e2dfc0b9fe0",
+		"name": "Food-Ordering-Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30945982"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin - Login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Create Vendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Third Restarunt\",\r\n    \"foodType\":[\"non-veg\", \"veg\"],\r\n    \"pincode\": \"400008\",\r\n    \"phone\": \"7506414291\",\r\n    \"ownerName\": \"Mr PQR\",\r\n    \"email\" : \"pqr@gmail.com\",\r\n    \"address\": \"Mumbai Central\",\r\n    \"password\": \"123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/admin/vendors",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"admin",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Get Vendor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/admin/vendors",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"admin",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Get VendorById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/admin/vendors/6681664a20d4362a1a612f30",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"admin",
+								"vendors",
+								"6681664a20d4362a1a612f30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "Vendor - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"xyz@gmail.com\",\r\n    \"password\" : \"123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/login",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor - Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgxYTdjZjE5YmMxOWExMzFlNmMzMmQiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJuYW1lIjoiU3VwZXIgQ29vbCBSZXN0cmF1bnQiLCJpYXQiOjE3MTk5ODU5NDgsImV4cCI6MTcyMDA3MjM0OH0.vyu30ujE3f2i8UZGJ_kIhDaLj_VxOYpUBpLABgVz4bg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/profile",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor - Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgxYTdjZjE5YmMxOWExMzFlNmMzMmQiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJuYW1lIjoiRmlyc3QgUmVzdGFydW50IiwiaWF0IjoxNzE5NzczMTUyLCJleHAiOjE3MTk4NTk1NTJ9.0VfgsC4iS5HoZTlmSlkCAgpV4XENp6_J-CNPX8b5nQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Super Cool Restraunt\",\r\n    \"address\": \"Mumbai, India\",\r\n    \"phone\": \"9172828822\",\r\n    \"foodTypes\": [\"non-veg\"]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/profile",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgxYTdjZjE5YmMxOWExMzFlNmMzMmQiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJuYW1lIjoiRmlyc3QgUmVzdGFydW50IiwiaWF0IjoxNzE5NzczMTUyLCJleHAiOjE3MTk4NTk1NTJ9.0VfgsC4iS5HoZTlmSlkCAgpV4XENp6_J-CNPX8b5nQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/service",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor - Add Food",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg0ZWY3OTdkY2M5YzgyMDE1ZTUwMzAiLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJuYW1lIjoiU2Vjb25kIFJlc3RhcnVudCIsImlhdCI6MTcxOTk4ODUwNywiZXhwIjoxNzIwMDc0OTA3fQ.-70kCMJjIwP6KURgccsUjTJtIRuY2Yf75FWnCKWzrl0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Ultimate Chicken Cheese Sandwich\",\r\n            \"description\": \"Ultimate Chicken Cheese Sandwich\",\r\n            \"category\": \"snacks\",\r\n            \"foodType\": \"non-veg\",\r\n            \"readyTime\": 30,\r\n            \"price\": 300 \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/food",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor - Get Foods",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg0ZWY3OTdkY2M5YzgyMDE1ZTUwMzAiLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJuYW1lIjoiU2Vjb25kIFJlc3RhcnVudCIsImlhdCI6MTcyMDA3MzQ2NiwiZXhwIjoxNzIwMTU5ODY2fQ.xLLD3g0lvUuYgJIS26YWt436D5BTH1YEgXG_lGRi88M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/foods",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor - Update Cover Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg0ZWY3OTdkY2M5YzgyMDE1ZTUwMzAiLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJuYW1lIjoiU2Vjb25kIFJlc3RhcnVudCIsImlhdCI6MTcyMDUwMzk5MiwiZXhwIjoxNzIwNTkwMzkyfQ.I_sbYornDIu_36PVUAQiMhKIPXN1I5EfNpYsJ1jsnT0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/farhan.ansari/Downloads/IMG_20240304_055256_241.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/vendor/coverImage",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"vendor",
+								"coverImage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping",
+			"item": [
+				{
+					"name": "Food Availalibility",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/400008",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"400008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shopping - Get Top Restraunts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/top-restraunts/400008",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"top-restraunts",
+								"400008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Food in 30 min",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/food-in-30-min/400008",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"food-in-30-min",
+								"400008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Food",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/search/400008",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"search",
+								"400008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restraunts By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/restraunts/400008",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restraunts",
+								"400008"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"xyz@gmail.com\",\r\n    \"phone\": \"9619487880\",\r\n    \"password\": \"1234568\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/customer/signup",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer - Verify",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjkxYjBmMjYwNDM1OGYzZTk0ZDdiOWQiLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTcyMDgyNDA1MSwiZXhwIjoxNzIwOTEwNDUxfQ.sObplYQfZEGxAL-SmAkBWBEHj1lZPMJcfOmfNk04Fgg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\": 405598\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/customer/verify",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"customer",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer | login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"email\": \"xyz@gmail.com\",\r\n    \"password\": \"1234568\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{devEnviroment}}:{{port}}/customer/login",
+							"protocol": "http",
+							"host": [
+								"{{devEnviroment}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
