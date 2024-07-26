@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { CreateVendorInput } from '../dto'
-import { Vendor } from '../models'
+import { Transaction, Vendor } from '../models'
+import { Customer } from '../models/Customer'
 export const CreateVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name,
@@ -31,7 +32,9 @@ export const CreateVendor = async (req: Request, res: Response, next: NextFuncti
             serviceAvailable: true,
             coverImages: [],
             foods: [],
-            salt: 'asasa'
+            salt: 'asasa',
+            lat: 0,
+            lng: 0
         })
 
         if (Object.keys(createVendor).length > 0) {
@@ -68,4 +71,57 @@ export const GetVendorById = async (req: Request, res: Response, next: NextFunct
         res.status(500).json({ "error": error })
 
     }
+}
+
+
+export const UpdateVendorService = async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user;
+    const {lat, lng} = req.body
+    if (user) {
+        const existingVendor = await Vendor.findById(user._id);
+        if (existingVendor!== null) {
+            if (lat && lng) {
+                existingVendor.lat = lat ;
+                existingVendor.lng = lng ;
+
+            }
+            let updatedVEndor = await existingVendor.save()
+            res.status(200).json(updatedVEndor)
+        }
+    }
+}
+
+export const GetTransaction = async (req: Request, res: Response, next: NextFunction) => {
+    const customer = req.user
+
+    if (customer) {
+        const profile = await Customer.findById(customer._id)
+        if (profile != null) {
+            const transaction = await Transaction.find();
+            if (transaction) {
+                return res.status(200).json(transaction)
+
+            }
+        }
+
+    }
+    return res.status(400).json({ "message": "Error in Get" })
+}
+
+export const GetTransactionById = async (req: Request, res: Response, next: NextFunction) => {
+    const customer = req.user;
+    const transactionId = req.params.id;
+
+    if (customer) {
+        const profile = await Customer.findById(customer._id)
+        if (profile != null) {
+            const transaction = await Transaction.findById(transactionId);
+            if (transaction) {
+                return res.status(200).json(transaction)
+
+            }
+        }
+
+    }
+    return res.status(400).json({ "message": "Error in Get" })
 }

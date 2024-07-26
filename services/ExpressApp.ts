@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import compression from 'compression';
 import path from 'path'
-import { AdminRoutes, ShoppingRouter, VendorRoutes, CustomerRoutes } from '../routes'
+import { AdminRoutes, ShoppingRouter, VendorRoutes, CustomerRoutes, DeliveryRoute } from '../routes'
 import { gzipSync } from 'fflate';
 
 export default async (app: Application) => {
@@ -16,6 +16,7 @@ export default async (app: Application) => {
     app.use('/admin', AdminRoutes);
     app.use('/vendor', VendorRoutes);
     app.use('/customer', CustomerRoutes)
+    app.use('/delivery', DeliveryRoute)
     app.use(ShoppingRouter)
 
     return app;

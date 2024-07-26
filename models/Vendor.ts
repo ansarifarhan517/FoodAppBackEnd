@@ -16,6 +16,8 @@ interface VendorDoc extends Document {
     coverImages: string[];
     ratings: number;
     foods: any;
+    lat: number;
+    lng: number;
 }
 
 interface VendorModel extends Model<VendorDoc> {
@@ -42,6 +44,8 @@ const VendorSchema = new mongoose.Schema({
     coverImages: { type: [String], },
     ratings: { type: Number, },
     foods: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'food' }],
+    lat: {type: Number},
+    lng: {type: Number}
 }, {
     toJSON: {
         transform(doc, ret) {

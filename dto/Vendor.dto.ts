@@ -28,3 +28,20 @@ export interface EditVendorInput {
     name: string;
     foodTypes: [string];
 }
+
+export interface CreateOfferInputs {
+    offerType: string;
+    vendors: [any];
+    title: string;
+    description: string;
+    minValue: number;
+    offerAmount: number;
+    startValidity: Date,
+    endValidity: Date;
+    promoCode: string;
+    promoType: string; //USER / ALL / BANK / CREDIT CARD  
+    bins: [any],
+    bank: [any];
+    pinCode: string;
+    isActive: boolean;
+}

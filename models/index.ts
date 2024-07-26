@@ -1,2 +1,5 @@
 export * from './Vendor'
 export * from './Food'
+export * from './Offers'
+export * from './Transaction'
+export * from './Order'

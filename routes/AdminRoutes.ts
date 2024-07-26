@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { CreateVendor, GetVendors, GetVendorById } from "../controllers";
+import { CreateVendor, GetVendors, GetVendorById, GetTransaction, GetTransactionById } from "../controllers";
 
 const router = Router();
 
@@ -11,4 +11,8 @@ router.get('/', (req: Request, res: Response) => {
 router.post('/vendors', CreateVendor)
 router.get('/vendors', GetVendors);
 router.get('/vendors/:id', GetVendorById);
+
+
+router.get('/transaction', GetTransaction)
+router.get('/transaction/:id', GetTransactionById)
 export { router as AdminRoutes };

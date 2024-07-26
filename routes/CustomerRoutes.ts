@@ -6,6 +6,8 @@ import {
     GetCart,
 AddToCart,
 DeleteCart,
+ApplyOffers,
+CreatePayment,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
 
@@ -34,4 +36,10 @@ router.post('/cart', AddToCart);
 router.delete('/cart', DeleteCart);
 
 
+//Apply Offers 
+router.get('/offer/verify/:id',Authenticate ,ApplyOffers)
+
+
+//Creeate Payment 
+router.post('/create-payment', Authenticate , CreatePayment)
 export { router as CustomerRoutes };

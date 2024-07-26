@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { AddFood, GetFoods, GetVendorProfile, UpdateVendorCoverImage, UpdateVendorProfile, UpdateVendorService, VendorLogin } from '../controllers';
+import { AddFood, CreateOffer, EditOffers, GetCurrentOrders, GetFoods, GetOffers, GetOrderDetails, GetVendorProfile, ProcessOrder, UpdateVendorCoverImage, UpdateVendorProfile, UpdateVendorService, VendorLogin } from '../controllers';
 import { Authenticate } from '../middlewares';
 import multer from 'multer'
 import path from 'path'
@@ -17,13 +17,25 @@ const imageStorage = multer.diskStorage({
 
 const images = multer({ storage: imageStorage })
 router.post('/login', VendorLogin);
+router.use(Authenticate)
+router.get('/profile', GetVendorProfile)
+router.patch('/profile', UpdateVendorProfile)
+router.patch('/service', UpdateVendorService)
+router.patch('/coverImage', images.array('images'), UpdateVendorCoverImage)
 
-router.get('/profile', Authenticate, GetVendorProfile)
-router.patch('/profile', Authenticate, UpdateVendorProfile)
-router.patch('/service', Authenticate, UpdateVendorService)
-router.patch('/coverImage', Authenticate , images.array('images'), UpdateVendorCoverImage)
+router.post('/food', images.single('images'), AddFood)
+router.get('/foods', GetFoods)
 
-router.post('/food', images.single('images'), Authenticate, AddFood)
-router.get('/foods', Authenticate, GetFoods)
+
+//Orders
+router.get('/orders', GetCurrentOrders)
+router.put('/order/:id/process', ProcessOrder)
+router.get('/order/:id', GetOrderDetails)
+
+//Offers
+router.get('/offers', GetOffers)
+router.post('/offer', CreateOffer)
+router.put('/offer/:id', EditOffers)
+
 
 export { router as VendorRoutes };
